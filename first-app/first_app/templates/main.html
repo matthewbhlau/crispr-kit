@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block script %}
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock script %}
+{% block content %}
+<div class="container-fluid mt-5">
+    <div class="row mt-5 d-flex justify-content-center align-items-center">
+        <div class="col-md-12 col-lg-6">
+            <form action="{% url 'results' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" name="name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="org">Organization/School</label>
+                    <input type="text" class="form-control" id="org" name="org">
+                </div>
+                
+                <div class="form-group">
+                    <label for="color">Let's choose color</label>
+                    <select name="color" class="form-select" aria-label="Default select example">
+                        <option value="red">Red</option>
+                        <option value="yellow">Yellow</option>
+                        <option value="blue">Blue</option>
+                        <option value="green">Green</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="image">Image</label>
+                    <input type="file" class="form-control" onchange="loadImage(event)" id="image" name="image">
+                </div>
+                
+                <div class="form-group">
+                    <div class="mt-3 image-container d-flex justify-content-center align-items-center"></div>
+                </div>
+                
+                <div class="mt-5 col-md-12 col-lg-12 d-flex align-items-center justify-content-center">
+                    <button type="submit" class="col-lg-6 col-md-12 btn btn-primary">Next</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
